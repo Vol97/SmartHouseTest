@@ -31,5 +31,18 @@ enum class Platform {
                 NONE -> R.drawable.vera_edge_big
             }
         }
+
+        fun getRequiredIcon(string: String?): Int {
+            return when (string) {
+                "SERCOMM_G450" -> R.drawable.vera_plus_big
+                "SERCOMM_G550" -> R.drawable.vera_secure_big
+                "MICASAVERDE_VERALITE",
+                "SERCOMM_NA900",
+                "SERCOMM_NA301",
+                "SERCOMM_NA930",
+                "NONE" -> R.drawable.vera_edge_big
+                else -> R.drawable.vera_edge_big
+            }
+        }
     }
 }

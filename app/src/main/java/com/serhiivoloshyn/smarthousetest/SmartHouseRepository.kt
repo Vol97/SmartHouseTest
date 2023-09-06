@@ -9,11 +9,11 @@ import javax.inject.Singleton
 @Singleton
 class SmartHouseRepository @Inject constructor(
     private val api: SmartHouseApi,
-    private val database: DevicesDatabase
+    database: DevicesDatabase
 ) {
     private val devicesDao = database.devicesDao()
 
-    suspend fun getDevices(): List<Device>? {
+    suspend fun refreshDevices(): List<Device> {
         val devices: List<Device>?
 
         val response = try {
@@ -28,10 +28,38 @@ class SmartHouseRepository @Inject constructor(
             emptyList()
         }
 
-        return devices
+        if (devices != null) {
+            var number = 1
+            devices.forEach {
+                it.name = "House $number"
+                number += 1
+            }
+
+            saveDevices(devices)
+        }
+
+        return devicesDao.getAll()
+    }
+
+    private fun saveDevices(devicesList: List<Device>) {
+        devicesList.forEach {
+            devicesDao.insertAll(it)
+        }
     }
 
     fun getSavedDevices(): List<Device> {
         return devicesDao.getAll()
+    }
+
+    fun deleteDevice(device: Device) {
+        devicesDao.delete(device)
+    }
+
+    fun getDeviceByName(name: String): Device {
+        return devicesDao.getDeviceByName(name)
+    }
+
+    fun updateDevices(device: Device) {
+        devicesDao.updateAll(device)
     }
 }

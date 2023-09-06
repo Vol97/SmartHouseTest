@@ -13,12 +13,18 @@ interface DevicesDao {
     @Query("SELECT * FROM devices")
     fun getAll(): List<Device>
 
-    @Insert(onConflict = OnConflictStrategy.REPLACE)
+    @Insert(onConflict = OnConflictStrategy.IGNORE)
     fun insertAll(vararg devices: Device)
 
     @Update
     fun updateAll(vararg devices: Device)
 
+    @Query("SELECT * FROM devices WHERE pkDevice LIKE :pkDevice LIMIT 1")
+    fun getDeviceByPkDevice(pkDevice: String): Device
+
+    @Query("SELECT * FROM devices WHERE name LIKE :name LIMIT 1")
+    fun getDeviceByName(name: String): Device
+
     @Delete
-    fun delete(user: Device)
+    fun delete(device: Device)
 }

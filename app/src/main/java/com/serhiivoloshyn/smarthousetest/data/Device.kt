@@ -31,5 +31,6 @@ data class Device(
     @SerializedName("LastAliveReported")
     val lastAliveReported: String,
     @SerializedName("Platform")
-    val platform: Platform
+    val platform: Platform,
+    var name: String? = "House"
 ): Parcelable

@@ -5,10 +5,9 @@ import androidx.room.RoomDatabase
 import com.serhiivoloshyn.smarthousetest.data.Device
 
 @Database(
-    version = 1,
+    version = 2,
     entities = [Device::class]
 )
 abstract class DevicesDatabase: RoomDatabase() {
-
     abstract fun devicesDao(): DevicesDao
 }

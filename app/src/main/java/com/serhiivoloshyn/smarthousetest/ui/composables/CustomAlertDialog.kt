@@ -1,22 +1,21 @@
 package com.serhiivoloshyn.smarthousetest.ui.composables
 
-import android.app.Activity
 import androidx.compose.material3.AlertDialog
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextButton
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.remember
-import androidx.compose.ui.platform.LocalContext
 
 @Composable
-fun CustomAlertDialog(title: String, mainText: String) {
-    val openDialog = remember { mutableStateOf(true) }
-    val context = LocalContext.current
-
-    if (openDialog.value) {
+fun CustomAlertDialog(
+    showDialog: Boolean,
+    title: String,
+    mainText: String,
+    onDismiss: () -> Unit,
+    deleteFunction: () -> Unit
+) {
+    if (showDialog) {
         AlertDialog(
-            onDismissRequest = { },
+            onDismissRequest = { onDismiss.invoke() },
             title = {
                 Text(text = title)
             },
@@ -26,11 +25,20 @@ fun CustomAlertDialog(title: String, mainText: String) {
             confirmButton = {
                 TextButton(
                     onClick = {
-                        openDialog.value = false
-                        (context as Activity).finish()
+                        onDismiss.invoke()
+                        deleteFunction.invoke()
                     }
                 ) {
-                    Text(text = "Close the app")
+                    Text(text = "Delete item")
+                }
+            },
+            dismissButton = {
+                TextButton(
+                    onClick = {
+                        onDismiss.invoke()
+                    }
+                ) {
+                    Text(text = "Cancel")
                 }
             }
         )

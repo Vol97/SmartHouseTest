@@ -5,11 +5,12 @@ import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
+import androidx.navigation.NavHostController
 import com.serhiivoloshyn.smarthousetest.data.Device
 import com.serhiivoloshyn.smarthousetest.data.Platform
 
 @Composable
-fun DevicesList(devices: List<Device>) {
+fun DevicesList(navController: NavHostController, devices: List<Device>) {
     LazyColumn(
         modifier = Modifier.fillMaxSize()
     ) {
@@ -18,10 +19,10 @@ fun DevicesList(devices: List<Device>) {
             key = { device ->
                 device.pkDevice
             }
-        ) {device ->
+        ) { device ->
             DeviceListItem(
+                navController = navController,
                 device = device,
-                header = "Home number",
                 icon = Platform.getRequiredIcon(device.platform)
             )
         }
