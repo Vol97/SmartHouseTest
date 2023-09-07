@@ -28,8 +28,9 @@ class SmartHouseRepository @Inject constructor(
             emptyList()
         }
 
-        if (devices != null) {
+        if (response != null && !devices.isNullOrEmpty()) {
             var number = 1
+
             devices.forEach {
                 it.name = "House $number"
                 number += 1

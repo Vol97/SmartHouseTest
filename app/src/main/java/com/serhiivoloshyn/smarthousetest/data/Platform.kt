@@ -3,21 +3,21 @@ package com.serhiivoloshyn.smarthousetest.data
 import com.google.gson.annotations.SerializedName
 import com.serhiivoloshyn.smarthousetest.R
 
-enum class Platform {
+enum class Platform(val platformName: String) {
     @SerializedName("Sercomm G450")
-    SERCOMM_G450,
+    SERCOMM_G450("Sercomm G450"),
     @SerializedName("Sercomm G550")
-    SERCOMM_G550,
+    SERCOMM_G550("Sercomm G550"),
     @SerializedName("MiCasaVerde VeraLite")
-    MICASAVERDE_VERALITE,
+    MICASAVERDE_VERALITE("MiCasaVerde VeraLite"),
     @SerializedName("Sercomm NA900")
-    SERCOMM_NA900,
+    SERCOMM_NA900("Sercomm NA900"),
     @SerializedName("Sercomm NA301")
-    SERCOMM_NA301,
+    SERCOMM_NA301("Sercomm NA301"),
     @SerializedName("Sercomm NA930")
-    SERCOMM_NA930,
+    SERCOMM_NA930("Sercomm NA930"),
     @SerializedName("")
-    NONE;
+    NONE("None");
 
     companion object {
         fun getRequiredIcon(platform: Platform): Int {

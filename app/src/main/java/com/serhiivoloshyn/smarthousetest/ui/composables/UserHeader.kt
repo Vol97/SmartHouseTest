@@ -23,7 +23,6 @@ import com.serhiivoloshyn.smarthousetest.R
 @Composable
 fun UserHeader() {
     val configuration = LocalConfiguration.current
-
     val desiredHeight = (configuration.screenHeightDp * 0.3).dp
 
     Column(

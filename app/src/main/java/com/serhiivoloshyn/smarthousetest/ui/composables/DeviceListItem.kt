@@ -65,7 +65,7 @@ fun DeviceListItem(
                             device.pkDevice,
                             device.macAddress,
                             device.firmware,
-                            device.platform.name,
+                            device.platform.platformName,
                             "false"
                         )
                     )
@@ -119,7 +119,7 @@ fun DeviceListItem(
                                     device.pkDevice,
                                     device.macAddress,
                                     device.firmware,
-                                    device.platform.name,
+                                    device.platform.platformName,
                                     "true"
                                 )
                             )
